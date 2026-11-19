@@ -1,0 +1,6 @@
+# private — never publish
+*.pdf
+.env
+# working files
+posts/*/out/*.png
+__pycache__/

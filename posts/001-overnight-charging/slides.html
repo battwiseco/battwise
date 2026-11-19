@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>battwise 001 — overnight charging</title>
+<link rel="stylesheet" href="../../brand/battwise.css">
+<style>
+  .chart text { font-family: "Space Grotesk"; fill: var(--muted); }
+  .chart .lbl { fill: var(--ink); font-weight: 600; }
+  .legend { display: flex; gap: 40px; font-size: 30px; color: var(--muted); }
+  .legend i { display: inline-block; width: 28px; height: 28px; border-radius: 8px; vertical-align: -4px; margin-right: 12px; }
+  .stamp {
+    align-self: flex-start; font-family: "Space Grotesk"; font-weight: 700; font-size: 96px; letter-spacing: 0.04em; white-space: nowrap;
+    color: var(--warn); border: 10px solid var(--warn); border-radius: 28px; padding: 6px 40px 14px; transform: rotate(-4deg);
+  }
+  .hero-batt { align-self: flex-start; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Hook -->
+<section class="slide">
+  <div class="body">
+    <span class="tag">Myth or fact?</span>
+    <h1>Does charging <span class="hl">overnight</span> ruin your battery?</h1>
+    <svg class="hero-batt" width="580" height="220" viewBox="0 0 580 220" aria-hidden="true">
+      <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#1FD6B4"/><stop offset="1" stop-color="#B6F55A"/></linearGradient></defs>
+      <rect x="6" y="30" width="440" height="160" rx="34" fill="none" stroke="#EAF8F3" stroke-width="12"/>
+      <rect x="458" y="80" width="30" height="60" rx="10" fill="#EAF8F3"/>
+      <rect x="30" y="54" width="392" height="112" rx="18" fill="url(#g1)"/>
+      <text x="226" y="132" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="64" fill="#07131F">100%</text>
+      <path transform="translate(50,-6)" d="M470 10a34 34 0 1 0 40 42a28 28 0 1 1 -40 -42z" fill="#FFC933"/>
+    </svg>
+    <p class="small">A battery engineer's answer, in 8 slides.</p>
+  </div>
+</section>
+
+<!-- 2 · Verdict -->
+<section class="slide">
+  <div class="body">
+    <span class="stamp">MOSTLY MYTH</span>
+    <h2>Your phone <span class="hl">can't overcharge.</span></h2>
+    <p class="lead">When the battery is full, the phone's charging circuit stops drawing current from the charger, so no charging current flows. Leaving it plugged in won't "overfill" it.</p>
+    <p class="small">But there is a small catch. Keep swiping.</p>
+  </div>
+</section>
+
+<!-- 3 · How charging works -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">How it actually charges</span>
+    <h2>Fast, then slow, then <span class="hl">stop.</span></h2>
+    <svg class="chart" width="904" height="520" viewBox="0 0 904 520" aria-label="Charge level over time: rises quickly, slows near full, then holds at 100%">
+      <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#1FD6B4"/><stop offset="1" stop-color="#B6F55A"/></linearGradient></defs>
+      <line x1="80" y1="440" x2="880" y2="440" stroke="rgba(234,248,243,.25)" stroke-width="3"/>
+      <line x1="80" y1="40" x2="80" y2="440" stroke="rgba(234,248,243,.25)" stroke-width="3"/>
+      <line x1="80" y1="60" x2="880" y2="60" stroke="rgba(234,248,243,.12)" stroke-width="2" stroke-dasharray="8 10"/>
+      <text x="64" y="70" text-anchor="end" font-size="26">100%</text>
+      <text x="64" y="450" text-anchor="end" font-size="26">0%</text>
+      <text x="880" y="488" text-anchor="end" font-size="26">time on charger →</text>
+      <path d="M80 440 L400 136 C470 80 540 62 620 60" fill="none" stroke="url(#g2)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M620 60 L880 60" fill="none" stroke="#B6F55A" stroke-width="12" stroke-linecap="round" stroke-dasharray="2 22"/>
+      <text class="lbl" x="170" y="250" font-size="32">1 · fast</text>
+      <text class="lbl" x="430" y="200" font-size="32">2 · slows down</text>
+      <text class="lbl" x="650" y="110" font-size="32">3 · stops</text>
+      <text x="650" y="148" font-size="26">small top-ups only</text>
+    </svg>
+    <p class="lead">Once it reaches 100%, the phone only tops up a little now and then.</p>
+  </div>
+</section>
+
+<!-- 4 · The catch -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">The real catch</span>
+    <h2>It's not the charging. It's <span class="warn">full + hot</span>.</h2>
+    <p class="lead">Lithium-ion ages faster when it sits at a <b>high charge</b> for hours, and faster still when it's <b>warm</b>.</p>
+    <p class="small">One night won't hurt it much, but hundreds of nights add up.</p>
+  </div>
+</section>
+
+<!-- 5 · Data -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">The numbers</span>
+    <h2 style="font-size:70px">Capacity left after <span class="hl">1 year</span> of storage</h2>
+    <svg class="chart" width="790" height="490" viewBox="0 0 904 560" style="align-self:center" aria-label="At 25°C: 96% left at 40% charge, 80% left at full charge. At 40°C: 85% vs 65%.">
+      <line x1="40" y1="480" x2="880" y2="480" stroke="rgba(234,248,243,.25)" stroke-width="3"/>
+      <!-- scale: 100% = 400px, baseline y=480 -->
+      <rect x="90"  y="96"  width="150" height="384" rx="14" fill="#1FD6B4"/>
+      <rect x="260" y="160" width="150" height="320" rx="14" fill="#FF8A6B"/>
+      <rect x="500" y="140" width="150" height="340" rx="14" fill="#1FD6B4"/>
+      <rect x="670" y="220" width="150" height="260" rx="14" fill="#FF8A6B"/>
+      <text class="lbl" x="165" y="76"  text-anchor="middle" font-size="44">96%</text>
+      <text class="lbl" x="335" y="140" text-anchor="middle" font-size="44">80%</text>
+      <text class="lbl" x="575" y="120" text-anchor="middle" font-size="44">85%</text>
+      <text class="lbl" x="745" y="200" text-anchor="middle" font-size="44">65%</text>
+      <text class="lbl" x="250" y="530" text-anchor="middle" font-size="34">25°C · 77°F</text>
+      <text class="lbl" x="660" y="530" text-anchor="middle" font-size="34">40°C · 104°F</text>
+    </svg>
+    <div class="legend"><span><i style="background:#1FD6B4"></i>kept at 40%</span><span><i style="background:#FF8A6B"></i>kept at 100%</span></div>
+    <p class="small">A whole year sitting full is the extreme case. Your nightly charge follows the same trend, just much smaller. Data: Battery University, BU-808.</p>
+  </div>
+</section>
+
+<!-- 6 · Heat -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Heat is the bigger enemy</span>
+    <h2>Keep it <span class="hl">cool</span> while it charges.</h2>
+    <ul class="list">
+      <li><span class="n">1</span><span>Don't charge it under a pillow or blanket.</span></li>
+      <li><span class="n">2</span><span>If it gets hot on the charger, take it out of its case.</span></li>
+      <li><span class="n">3</span><span>Keep it out of the sun and off hot surfaces.</span></li>
+    </ul>
+    <p class="small">Apple: the ideal room temperature is 16–22°C (62–72°F). Avoid anything above 35°C (95°F).</p>
+  </div>
+</section>
+
+<!-- 7 · Fix -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">The 10-second fix</span>
+    <h2>Turn on <span class="hl">smart charging.</span></h2>
+    <p class="lead">Your phone learns your routine, holds at about 80% overnight, and fills to 100% just before you wake up.</p>
+    <div class="card">
+      <ul class="list" style="gap:22px">
+        <li style="font-size:32px"><span><b>iPhone 15+</b><br><span class="path">Settings › Battery › Charging</span></span></li>
+        <li style="font-size:32px"><span><b>iPhone 14 and older</b><br><span class="path">Settings › Battery › Battery Health &amp; Charging</span></span></li>
+        <li style="font-size:32px"><span><b>Pixel</b><br><span class="path">Settings › Battery › Battery health › Charging optimization</span></span></li>
+        <li style="font-size:32px"><span><b>Samsung &amp; others</b><br><span class="path">Battery settings › look for "Protect battery" or a charge limit</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · Verdict + CTA + sources -->
+<section class="slide">
+  <div class="body" style="gap:34px">
+    <span class="tag">The verdict</span>
+    <h2>Charge overnight. <span class="hl">Keep it cool.</span> Turn on smart charging.</h2>
+    <p class="lead">Send this to the friend who unplugs at 100% at 3 a.m.</p>
+    <div class="card sources">
+      <b>Sources</b><br>
+      Apple, "Batteries: Maximizing Performance" (apple.com/batteries)<br>
+      Apple Support, "About iPhone charging" (support.apple.com/108055)<br>
+      Battery University, BU-808 "How to Prolong Lithium-based Batteries", Table 3<br>
+      Google, Pixel Phone Help: charging optimization
+    </div>
+  </div>
+</section>
+
+<script>
+  // Shared header/footer, and single-slide mode for rendering: slides.html?s=3  |  preview all: ?all
+  const slides = [...document.querySelectorAll(".slide")];
+  const total = slides.length;
+  const markT = '<svg viewBox="190 126 300 396" aria-hidden="true"><defs><linearGradient id="bwID" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1FD6B4"/><stop offset="1" stop-color="#B6F55A"/></linearGradient></defs><rect x="196" y="132" width="64" height="372" rx="32" fill="#EAF8F3"/><circle cx="340" cy="372" r="112" fill="none" stroke="url(#bwID)" stroke-width="64"/><polygon points="356,318 312,382 338,382 324,432 372,362 346,362" fill="#FFC933"/></svg>';
+  slides.forEach((s, i) => {
+    s.insertAdjacentHTML("afterbegin", `<div class="top"><div class="brand">${markT.replaceAll("bwID","bw"+i)}battwise</div><div class="count">${i + 1}/${total}</div></div>`);
+    s.insertAdjacentHTML("beforeend", `<div class="foot"><span>@battwise.co</span>${i < total - 1 ? '<span class="swipe">Swipe</span>' : '<span style="color:var(--ink);display:flex;gap:12px;align-items:center">Follow for more <svg width=\"34\" height=\"44\" viewBox=\"310 316 64 118\" style=\"vertical-align:-6px\"><polygon points=\"356,318 312,382 338,382 324,432 372,362 346,362\" fill=\"#FFC933\"/></svg></span>'}</div>`);
+  });
+  const q = new URLSearchParams(location.search);
+  if (q.has("all")) document.body.classList.add("all");
+  else slides[(parseInt(q.get("s") || "1", 10) - 1)].classList.add("active");
+</script>
+</body>
+</html>

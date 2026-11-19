@@ -1,0 +1,81 @@
+/* battwise — carousel template (1080x1350, 4:5)
+   Fonts: Space Grotesk + Inter, both SIL OFL 1.1 (licenses in brand/fonts). */
+@font-face { font-family: "Space Grotesk"; src: url("fonts/SpaceGrotesk.ttf") format("truetype"); font-weight: 300 700; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter.ttf") format("truetype"); font-weight: 100 900; }
+
+:root {
+  --bg0: #07131F;
+  --bg1: #14405C;
+  --teal: #1FD6B4;
+  --lime: #B6F55A;
+  --bolt: #FFC933;
+  --ink: #EAF8F3;
+  --muted: #9CBACB;
+  --line: rgba(234, 248, 243, 0.14);
+  --card: rgba(234, 248, 243, 0.06);
+  --warn: #FF8A6B;
+  --grad: linear-gradient(90deg, var(--teal), var(--lime));
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1350px; background: var(--bg0); overflow: hidden; }
+body { font-family: "Inter", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+.slide {
+  width: 1080px; height: 1350px; position: relative; overflow: hidden;
+  display: none; flex-direction: column;
+  padding: 84px 88px 76px;
+  background: radial-gradient(120% 90% at 70% 20%, var(--bg1) 0%, var(--bg0) 70%);
+}
+.slide.active { display: flex; }
+body.all .slide { display: flex; margin-bottom: 24px; } /* preview mode */
+body.all { height: auto; overflow: auto; }
+
+/* decorative ring, echoes the logo bowl */
+.slide::before {
+  content: ""; position: absolute; width: 760px; height: 760px; right: -300px; bottom: -300px;
+  border-radius: 50%; border: 120px solid transparent;
+  background: var(--grad) border-box;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0.07; pointer-events: none;
+}
+
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+.brand { display: flex; align-items: center; gap: 16px; font-family: "Space Grotesk"; font-weight: 700; font-size: 34px; letter-spacing: -0.01em; }
+.brand svg { width: 44px; height: 58px; }
+.count { font-family: "Space Grotesk"; font-size: 28px; color: var(--muted); font-weight: 500; }
+
+/* content */
+.body { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1; gap: 40px; }
+.tag {
+  align-self: flex-start; font-family: "Space Grotesk"; font-weight: 700; font-size: 28px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--bg0); background: var(--grad); padding: 12px 24px; border-radius: 999px;
+}
+.tag.ghost { background: none; color: var(--lime); border: 2px solid var(--lime); }
+h1 { font-family: "Space Grotesk"; font-weight: 700; font-size: 108px; line-height: 0.98; letter-spacing: -0.035em; }
+h2 { font-family: "Space Grotesk"; font-weight: 700; font-size: 80px; line-height: 1.02; letter-spacing: -0.03em; }
+.hl { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bolt { color: var(--bolt); }
+.warn { color: var(--warn); }
+p.lead { font-size: 44px; line-height: 1.3; color: var(--ink); font-weight: 400; }
+p.lead b { font-weight: 700; }
+p.small { font-size: 32px; line-height: 1.4; color: var(--muted); }
+
+.card { background: var(--card); border: 2px solid var(--line); border-radius: 32px; padding: 40px 44px; }
+.list { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+.list li { display: flex; gap: 28px; align-items: flex-start; font-size: 40px; line-height: 1.3; }
+.list .n {
+  flex: none; width: 64px; height: 64px; border-radius: 50%; background: var(--grad); color: var(--bg0);
+  font-family: "Space Grotesk"; font-weight: 700; font-size: 34px; display: grid; place-items: center; margin-top: -4px;
+}
+.path { font-family: "Space Grotesk"; font-weight: 500; color: var(--lime); }
+
+/* footer */
+.foot { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; font-size: 28px; color: var(--muted); font-family: "Space Grotesk"; font-weight: 500; }
+.swipe { color: var(--ink); }
+.swipe::after { content: "  →"; color: var(--lime); }
+
+.sources { font-size: 24px; line-height: 1.45; color: var(--muted); }
+.sources b { color: var(--ink); font-weight: 600; }

@@ -1,0 +1,17 @@
+{
+  "id": "001",
+  "type": "carousel",
+  "publish_at": "2026-11-23T18:30:00+03:00",
+  "status": "approved",
+  "caption_file": "caption.txt",
+  "media": [
+    "out/01.jpg",
+    "out/02.jpg",
+    "out/03.jpg",
+    "out/04.jpg",
+    "out/05.jpg",
+    "out/06.jpg",
+    "out/07.jpg",
+    "out/08.jpg"
+  ]
+}
