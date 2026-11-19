@@ -2,7 +2,7 @@
   "id": "008",
   "type": "reel",
   "publish_at": "2026-12-03T18:30:00+03:00",
-  "status": "draft",
+  "status": "approved",
   "caption_file": "caption.txt",
   "media": [
     "out/reel.mp4"

@@ -2,7 +2,7 @@
   "id": "007",
   "type": "carousel",
   "publish_at": "2026-12-02T18:30:00+03:00",
-  "status": "draft",
+  "status": "approved",
   "caption_file": "caption.txt",
   "media": [
     "out/01.jpg",
