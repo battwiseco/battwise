@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run: { description: "Dry run (publish nothing)", type: boolean, default: false }
+      check_only: { description: "Only verify the token and account", type: boolean, default: false }
 permissions:
   contents: write
 concurrency: { group: publish, cancel-in-progress: false }
@@ -17,7 +18,10 @@ jobs:
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           MEDIA_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}
+          IG_API: facebook
+          GRAPH_VERSION: v24.0
           DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+          CHECK_ONLY: ${{ inputs.check_only && '1' || '0' }}
         run: python tools/publish.py
       - name: Save status back to the repo
         if: always()

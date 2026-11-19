@@ -1,4 +1,8 @@
-"""battwise publisher — official Instagram API (Instagram Login), stdlib only.
+"""battwise publisher — official Instagram Graph API, stdlib only.
+
+IG_API=facebook (default): Instagram API with Facebook Login, graph.facebook.com,
+  IG_TOKEN = non-expiring Page access token of the Page linked to @battwise.co.
+IG_API=instagram: Instagram API with Instagram Login, graph.instagram.com.
 
 Runs in GitHub Actions on a schedule. Publishes every post whose post.json has
 status "approved" and publish_at <= now, then marks it "published".
@@ -19,7 +23,8 @@ BASE = os.environ.get("MEDIA_BASE_URL", "").rstrip("/")
 EXPECT = os.environ.get("IG_EXPECT_USER", "battwise.co")
 VER = os.environ.get("GRAPH_VERSION", "v24.0")
 DRY = os.environ.get("DRY_RUN") == "1"
-API = f"https://graph.instagram.com/{VER}"
+MODE = os.environ.get("IG_API", "facebook")
+API = f"https://graph.{'facebook' if MODE == 'facebook' else 'instagram'}.com/{VER}"
 
 
 def call(method, path, **params):
@@ -85,6 +90,14 @@ def publish(post_dir, meta, uid):
     return pub["id"], info.get("permalink", "")
 
 
+def whoami():
+    if MODE == "facebook":  # token is a Page token: me = the Page
+        ig = call("GET", "me", fields="instagram_business_account{id,username}").get("instagram_business_account") or {}
+        return ig.get("id"), ig.get("username")
+    me = call("GET", "me", fields="user_id,username")
+    return me.get("user_id"), me.get("username")
+
+
 def main():
     now = dt.datetime.now(dt.timezone.utc)
     due = []
@@ -93,14 +106,16 @@ def main():
         when = dt.datetime.fromisoformat(meta["publish_at"])
         if meta.get("status") == "approved" and when <= now:
             due.append((pj, meta))
+    if os.environ.get("CHECK_ONLY") == "1":
+        uid, username = whoami()
+        print(f"token ok: @{username} (ig id {uid}), {len(due)} post(s) due"); return
     if not due:
         print("nothing due"); return
     if not TOKEN or not BASE:
         sys.exit("IG_TOKEN and MEDIA_BASE_URL are required")
-    me = call("GET", "me", fields="user_id,username")
-    if me.get("username") != EXPECT:
-        sys.exit(f"token belongs to @{me.get('username')}, expected @{EXPECT}; refusing to publish")
-    uid = me["user_id"]
+    uid, username = whoami()
+    if username != EXPECT:
+        sys.exit(f"token belongs to @{username}, expected @{EXPECT}; refusing to publish")
     failed = False
     for pj, meta in due:
         print(f"publishing {pj.parent.name} ({meta['type']})")
