@@ -1,9 +1,9 @@
 import React from "react";
 import { interpolate, Sequence, spring, useCurrentFrame, useVideoConfig, Easing } from "remotion";
-import { C, Frame, HEAD, Hl, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
+import { Bed, C, Frame, HEAD, Hl, Scene, Sfx, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
 
 // 004 — Should you drain your battery to 0% before charging? Data: Battery University BU-808, Table 2 (NMC).
-// 30 fps, 720 frames = 24 s
+// 30 fps, 785 frames = 26.2 s, voice + sound (tools/voice.py, tools/sfx.py)
 
 const Stamp: React.FC<{ at: number }> = ({ at }) => {
   const f = useCurrentFrame();
@@ -14,7 +14,7 @@ const Stamp: React.FC<{ at: number }> = ({ at }) => {
       alignSelf: "flex-start", fontFamily: HEAD, fontWeight: 700, fontSize: 150, letterSpacing: "0.04em", color: C.warn,
       border: `12px solid ${C.warn}`, borderRadius: 32, padding: "4px 44px 14px",
       opacity: Math.min(1, s * 1.5), transform: `rotate(-5deg) scale(${interpolate(s, [0, 1], [1.8, 1])})`,
-    }}>MYTH</div>
+    }}>MYTH<Sfx name="stamp" at={at} /></div>
   );
 };
 
@@ -22,7 +22,7 @@ const Hook: React.FC = () => (
   <Stack>
     <div style={useIn(0)}><Tag>Myth or fact?</Tag></div>
     <div style={{ ...h1, ...useIn(3) }}>Should you drain your phone to <Hl color={C.warn}>0%</Hl> before charging?</div>
-    <Stamp at={50} />
+    <Stamp at={100} />
   </Stack>
 );
 
@@ -51,6 +51,7 @@ const Chart: React.FC = () => {
         const p = interpolate(f, [at, at + 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
         return (
           <div key={r.dod} style={useIn(at - 6)}>
+            <Sfx name="pop" at={at} />
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: 40, marginBottom: 12 }}>
               <span>{r.dod}</span>
               <span style={{ fontFamily: HEAD, fontWeight: 700 }}>~{Math.round(r.cycles * p).toLocaleString("en-US")}</span>
@@ -83,10 +84,11 @@ const Outro: React.FC = () => (
 
 export const DrainMyth: React.FC = () => (
   <Frame>
-    <Sequence durationInFrames={120}><Hook /></Sequence>
-    <Sequence from={120} durationInFrames={150}><Memory /></Sequence>
-    <Sequence from={270} durationInFrames={240}><Chart /></Sequence>
-    <Sequence from={510} durationInFrames={120}><Do /></Sequence>
-    <Sequence from={630} durationInFrames={90}><Outro /></Sequence>
+    <Bed total={785} />
+    <Scene comp="004-drain-myth" line="hook" from={0} dur={130}><Hook /></Scene>
+    <Scene comp="004-drain-myth" line="memory" from={130} dur={150}><Memory /></Scene>
+    <Scene comp="004-drain-myth" line="chart" from={280} dur={285}><Chart /></Scene>
+    <Scene comp="004-drain-myth" line="do" from={565} dur={120}><Do /></Scene>
+    <Scene comp="004-drain-myth" line="outro" from={685} dur={100}><Outro /></Scene>
   </Frame>
 );

@@ -1,7 +1,7 @@
 # 006 — How many charge cycles is your battery built for?
 
 - **Publish:** 2026-12-01T18:30:00+03:00
-- **Pillar:** By the numbers · **Format:** Reel 26s · **Music:** none
+- **Pillar:** By the numbers · **Format:** Reel 33s · **Audio:** AI voiceover (Kokoro-82M, Apache 2.0) + sound design synthesized in code; no music
 
 ## Caption
 
@@ -20,6 +20,8 @@ Follow for more battery numbers.
 
 Sources: Apple Support "iPhone battery and performance"; Apple "Batteries: Service and Recycling".
 
+🎙️ AI voiceover.
+
 #batteryhealth #iphonebattery #chargecycles #applewatch #macbook
 
 ## Sources (verified 2026-11-19)
@@ -36,3 +38,4 @@ Sources: Apple Support "iPhone battery and performance"; Apple "Batteries: Servi
 ## Licenses
 
 - Fonts: Space Grotesk, Inter (SIL OFL 1.1). All graphics/animation drawn in code; charts redrawn from published data.
+- Audio: voice generated locally with Kokoro-82M (Apache 2.0, voice af_heart); sound effects and ambient bed synthesized in code (tools/sfx.py).

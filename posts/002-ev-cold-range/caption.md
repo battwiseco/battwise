@@ -1,7 +1,7 @@
 # 002 — How cold weather cuts EV range
 
 - **Publish:** 2026-11-24T18:30:00+03:00
-- **Pillar:** By the numbers · **Format:** Reel 25s · **Music:** none
+- **Pillar:** By the numbers · **Format:** Reel 28s · **Audio:** AI voiceover (Kokoro-82M, Apache 2.0) + sound design synthesized in code; no music
 
 ## Caption
 
@@ -14,6 +14,8 @@ The fix: pre-heat the car while it's still plugged in, so the warm-up runs on gr
 Send this to an EV driver before the first cold snap.
 
 Source: AAA, 2019 (5 EVs, dynamometer, climate-controlled lab).
+
+🎙️ AI voiceover.
 
 #electricvehicle #evrange #evtips #winterdriving #evbattery
 
@@ -30,3 +32,4 @@ Source: AAA, 2019 (5 EVs, dynamometer, climate-controlled lab).
 ## Licenses
 
 - Fonts: Space Grotesk, Inter (SIL OFL 1.1). All graphics/animation drawn in code; charts redrawn from published data.
+- Audio: voice generated locally with Kokoro-82M (Apache 2.0, voice af_heart); sound effects and ambient bed synthesized in code (tools/sfx.py).

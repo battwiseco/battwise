@@ -24,7 +24,7 @@ Topics span phone, laptop, e-bike, EV, home storage, power stations. Never repea
 - Every technical claim has a **primary source** (manufacturer doc, peer-reviewed paper, government/agency data, Battery University). Open the source and verify the number before using it. List sources on the last slide and in `caption.md`.
 - No logos, press photos, film/TV/sport footage, celebrity faces, screenshots of other posts. Brand names only as text.
 - Charts are redrawn from data, never copied.
-- No music (videos carry a silent track). No health or investment claims. No build instructions for high-voltage packs. No employer or confidential data.
+- No music. Reels carry an AI voiceover + code-made sound (see Reel audio below); caption ends with "🎙️ AI voiceover." before the hashtags. No health or investment claims. No build instructions for high-voltage packs. No employer or confidential data.
 - No affiliate links, no #ad content until told otherwise.
 - Caption: hook first line, 3–5 topical hashtags at the end, keywords written naturally for search. One call to action per post.
 - Uncertain safety claim → leave it out and add a question to the engineer-review list.
@@ -34,6 +34,14 @@ Topics span phone, laptop, e-bike, EV, home storage, power stations. Never repea
 Dark navy background, teal→lime gradient accent, yellow bolt, off-white text. Fonts Space Grotesk (headings) + Inter (body), OFL.
 Carousels: 1080×1350, `brand/battwise.css` + `brand/frame.js` (adds header, counter, footer). Copy the structure of `posts/003-lfp-vs-nmc/slides.html`.
 Reels: 1080×1920, 30 fps, Remotion in `reels/src` using `brand.tsx` (`Frame`, `Stack`, `Tag`, `Hl`, `useIn`). Copy `reels/src/EvCold.tsx`. First 2 seconds = hook. Keep content between y 280 and y 1500.
+
+## Reel audio
+
+Every reel has a voiceover and sound design; never a silent reel.
+1. Write `reels/voice/<composition>.json`: `{"voice": "af_heart", "speed": 1.1, "lines": {"<scene>": "spoken text", ...}}`. Spell numbers as words, short sentences, same facts as on screen.
+2. `VIRTUAL_ENV=.venv-tts .venv-tts/Scripts/python tools/voice.py <composition>` → `reels/public/vo/<composition>/*.wav` + `durations.json` (local only; one-time setup is in the script header). Commit the wavs.
+3. Build the root with `<Bed total={N} />` and one `<Scene comp line from dur>` per scene (brand.tsx). Each scene must be at least voice length + 0.7 s (≈ 21 frames); keep the reel ≤ 35 s. Add `<Sfx name="pop" at={..} />` on chart bars and `<Sfx name="stamp" />` on MYTH/FACT stamps.
+4. `tools/render_reel.sh` keeps the mixed audio and normalises it to about −14 LUFS. Check the cover frame is not on a scene cut.
 
 ## Post folder layout
 

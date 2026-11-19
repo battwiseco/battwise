@@ -1,9 +1,9 @@
 import React from "react";
 import { interpolate, Sequence, useCurrentFrame, Easing } from "remotion";
-import { C, Frame, HEAD, Hl, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
+import { Bed, C, Frame, HEAD, Hl, Scene, Sfx, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
 
 // 002 — How cold weather cuts EV range. Data: AAA (2019), 5 EVs on a dynamometer.
-// 30 fps, 750 frames = 25 s
+// 30 fps, 825 frames = 27.5 s, voice + sound (tools/voice.py, tools/sfx.py)
 
 const Counter: React.FC = () => {
   const f = useCurrentFrame();
@@ -24,6 +24,7 @@ const Bar: React.FC<{ label: string; value: number; color: string; at: number; n
   const w = interpolate(f, [at, at + 30], [0, value], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   return (
     <div style={{ ...useIn(at - 6) }}>
+      <Sfx name="pop" at={at} />
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 40, marginBottom: 14 }}>
         <span>{label}</span><span style={{ fontFamily: HEAD, fontWeight: 700 }}>{Math.round(w)} mi</span>
       </div>
@@ -71,10 +72,11 @@ const Outro: React.FC = () => (
 
 export const EvCold: React.FC = () => (
   <Frame>
-    <Sequence durationInFrames={105}><Hook /></Sequence>
-    <Sequence from={105} durationInFrames={210}><Bars /></Sequence>
-    <Sequence from={315} durationInFrames={165}><Why /></Sequence>
-    <Sequence from={480} durationInFrames={150}><Fix /></Sequence>
-    <Sequence from={630} durationInFrames={120}><Outro /></Sequence>
+    <Bed total={825} />
+    <Scene comp="002-ev-cold" line="hook" from={0} dur={150}><Hook /></Scene>
+    <Scene comp="002-ev-cold" line="bars" from={150} dur={210}><Bars /></Scene>
+    <Scene comp="002-ev-cold" line="why" from={360} dur={150}><Why /></Scene>
+    <Scene comp="002-ev-cold" line="fix" from={510} dur={195}><Fix /></Scene>
+    <Scene comp="002-ev-cold" line="outro" from={705} dur={120}><Outro /></Scene>
   </Frame>
 );

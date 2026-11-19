@@ -1,0 +1,6 @@
+{"voice": "af_heart", "speed": 1.1, "lines": {
+ "hook": "A cold day can cut your E.V.'s range by up to forty-one percent.",
+ "bars": "In triple-A's lab test, range dropped twelve percent with the heater off, and forty-one percent with it on.",
+ "why": "Most of that loss is heating, not the battery itself.",
+ "fix": "So pre-heat the car while it's still plugged in. It warms up on grid power, not on your range.",
+ "outro": "Send this to an E.V. driver before winter."}}

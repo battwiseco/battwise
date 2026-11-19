@@ -10,6 +10,6 @@
   "cover": "out/cover.jpg",
   "render": {
     "composition": "008-freezing-charge",
-    "cover_frame": 100
+    "cover_frame": 145
   }
 }

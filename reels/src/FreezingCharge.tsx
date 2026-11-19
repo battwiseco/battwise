@@ -1,9 +1,9 @@
 import React from "react";
 import { interpolate, Sequence, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { C, Frame, HEAD, Hl, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
+import { Bed, C, Frame, HEAD, Hl, Scene, Sfx, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
 
 // 008 — Is it fine to charge your e-bike in a freezing garage? Data: Battery University BU-410, Table 1.
-// 30 fps, 720 frames = 24 s
+// 30 fps, 810 frames = 27.0 s, voice + sound (tools/voice.py, tools/sfx.py)
 
 const ICE = "#8FD3FF";
 
@@ -16,7 +16,7 @@ const Stamp: React.FC<{ at: number }> = ({ at }) => {
       alignSelf: "flex-start", fontFamily: HEAD, fontWeight: 700, fontSize: 150, letterSpacing: "0.04em", color: C.warn,
       border: `12px solid ${C.warn}`, borderRadius: 32, padding: "4px 44px 14px",
       opacity: Math.min(1, s * 1.5), transform: `rotate(-5deg) scale(${interpolate(s, [0, 1], [1.8, 1])})`,
-    }}>MYTH</div>
+    }}>MYTH<Sfx name="stamp" at={at} /></div>
   );
 };
 
@@ -24,7 +24,7 @@ const Hook: React.FC = () => (
   <Stack>
     <div style={useIn(0)}><Tag>Myth or fact?</Tag></div>
     <div style={{ ...h1, fontSize: 104, ...useIn(3) }}>It's fine to charge your e-bike in a <Hl color={ICE}>freezing garage.</Hl></div>
-    <Stamp at={50} />
+    <Stamp at={118} />
   </Stack>
 );
 
@@ -88,10 +88,11 @@ const Outro: React.FC = () => (
 
 export const FreezingCharge: React.FC = () => (
   <Frame>
-    <Sequence durationInFrames={120}><Hook /></Sequence>
-    <Sequence from={120} durationInFrames={150}><Why /></Sequence>
-    <Sequence from={270} durationInFrames={210}><Range /></Sequence>
-    <Sequence from={480} durationInFrames={135}><Do /></Sequence>
-    <Sequence from={615} durationInFrames={105}><Outro /></Sequence>
+    <Bed total={810} />
+    <Scene comp="008-freezing-charge" line="hook" from={0} dur={150}><Hook /></Scene>
+    <Scene comp="008-freezing-charge" line="why" from={150} dur={195}><Why /></Scene>
+    <Scene comp="008-freezing-charge" line="range" from={345} dur={220}><Range /></Scene>
+    <Scene comp="008-freezing-charge" line="do" from={565} dur={135}><Do /></Scene>
+    <Scene comp="008-freezing-charge" line="outro" from={700} dur={110}><Outro /></Scene>
   </Frame>
 );

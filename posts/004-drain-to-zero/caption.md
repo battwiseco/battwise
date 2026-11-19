@@ -1,7 +1,7 @@
 # 004 — Should you drain your battery to 0% before charging?
 
 - **Publish:** 2026-11-26T18:30:00+03:00
-- **Pillar:** Myth or fact · **Format:** Reel 24s · **Music:** none
+- **Pillar:** Myth or fact · **Format:** Reel 26s · **Audio:** AI voiceover (Kokoro-82M, Apache 2.0) + sound design synthesized in code; no music
 
 ## Caption
 
@@ -14,6 +14,8 @@ So top up whenever it suits you. Short, frequent charges are easier on the batte
 Follow for more battery myths, busted.
 
 Source: Battery University, BU-808.
+
+🎙️ AI voiceover.
 
 #phonebattery #batterytips #batteryhealth #techmyths #lithiumion
 
@@ -28,3 +30,4 @@ Source: Battery University, BU-808.
 ## Licenses
 
 - Fonts: Space Grotesk, Inter (SIL OFL 1.1). All graphics/animation drawn in code; charts redrawn from published data.
+- Audio: voice generated locally with Kokoro-82M (Apache 2.0, voice af_heart); sound effects and ambient bed synthesized in code (tools/sfx.py).

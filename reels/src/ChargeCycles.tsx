@@ -1,10 +1,10 @@
 import React from "react";
 import { interpolate, Sequence, useCurrentFrame, Easing } from "remotion";
-import { C, Frame, HEAD, Hl, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
+import { Bed, C, Frame, HEAD, Hl, Scene, Sfx, Stack, Tag, h1, h2, lead, small, useIn } from "./brand";
 
 // 006 — How many charge cycles is your battery built for?
 // Data: Apple Support 101575 (iPhone) + apple.com/batteries/service-and-recycling (iPad, Mac, Watch)
-// 30 fps, 780 frames = 26 s
+// 30 fps, 990 frames = 33.0 s, voice + sound (tools/voice.py, tools/sfx.py)
 
 const Hook: React.FC = () => (
   <Stack>
@@ -48,6 +48,7 @@ const Chart: React.FC = () => {
         const p = interpolate(f, [at, at + 28], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
         return (
           <div key={r.name} style={useIn(at - 6)}>
+            <Sfx name="pop" at={at} />
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: 38, marginBottom: 10 }}>
               <span>{r.name}</span>
               <span style={{ fontFamily: HEAD, fontWeight: 700 }}>{Math.round(r.cycles * p).toLocaleString("en-US")}</span>
@@ -81,10 +82,11 @@ const Outro: React.FC = () => (
 
 export const ChargeCycles: React.FC = () => (
   <Frame>
-    <Sequence durationInFrames={90}><Hook /></Sequence>
-    <Sequence from={90} durationInFrames={180}><Cycle /></Sequence>
-    <Sequence from={270} durationInFrames={240}><Chart /></Sequence>
-    <Sequence from={510} durationInFrames={150}><Years /></Sequence>
-    <Sequence from={660} durationInFrames={120}><Outro /></Sequence>
+    <Bed total={990} />
+    <Scene comp="006-charge-cycles" line="hook" from={0} dur={105}><Hook /></Scene>
+    <Scene comp="006-charge-cycles" line="cycle" from={105} dur={240}><Cycle /></Scene>
+    <Scene comp="006-charge-cycles" line="chart" from={345} dur={335}><Chart /></Scene>
+    <Scene comp="006-charge-cycles" line="years" from={680} dur={185}><Years /></Scene>
+    <Scene comp="006-charge-cycles" line="outro" from={865} dur={125}><Outro /></Scene>
   </Frame>
 );

@@ -1,7 +1,7 @@
 # 008 — Is it fine to charge your e-bike in a freezing garage?
 
 - **Publish:** 2026-12-03T18:30:00+03:00
-- **Pillar:** Myth or fact · **Format:** Reel 24s · **Music:** none
+- **Pillar:** Myth or fact · **Format:** Reel 27s · **Audio:** AI voiceover (Kokoro-82M, Apache 2.0) + sound design synthesized in code; no music
 
 ## Caption
 
@@ -14,6 +14,8 @@ Riding in the cold is fine. Charging cold is the problem. Bring the battery insi
 Send this to someone who rides all winter.
 
 Source: Battery University, BU-410.
+
+🎙️ AI voiceover.
 
 #ebike #ebikebattery #wintercycling #batterysafety #lithiumion
 
@@ -29,3 +31,4 @@ Source: Battery University, BU-410.
 ## Licenses
 
 - Fonts: Space Grotesk, Inter (SIL OFL 1.1). All graphics/animation drawn in code; charts redrawn from published data.
+- Audio: voice generated locally with Kokoro-82M (Apache 2.0, voice af_heart); sound effects and ambient bed synthesized in code (tools/sfx.py).

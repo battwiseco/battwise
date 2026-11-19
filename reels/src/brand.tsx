@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/fonts";
 
 // Fonts: Space Grotesk + Inter, SIL OFL 1.1
@@ -72,4 +72,34 @@ export const small: React.CSSProperties = { fontSize: 34, lineHeight: 1.4, color
 /** Vertical stack centred in the safe zone */
 export const Stack: React.FC<{ children: React.ReactNode; gap?: number }> = ({ children, gap = 44 }) => (
   <div style={{ position: "absolute", top: 280, bottom: 420, left: 80, right: 80, display: "flex", flexDirection: "column", justifyContent: "center", gap }}>{children}</div>
+);
+
+// ---------- Sound ----------
+// Voice lines: reels/public/vo/<comp>/<line>.wav (tools/voice.py, Kokoro, Apache 2.0)
+// Sound kit:   reels/public/sfx/*.wav (tools/sfx.py, synthesized in code)
+
+/** One-shot sound effect at `at` frames (relative to the enclosing Sequence). */
+export const Sfx: React.FC<{ name: "whoosh" | "pop" | "stamp"; at?: number; volume?: number }> = ({ name, at = 0, volume }) => (
+  <Sequence from={Math.max(0, at)} layout="none">
+    <Audio src={staticFile(`sfx/${name}.wav`)} volume={volume ?? { whoosh: 0.3, pop: 0.35, stamp: 0.6 }[name]} />
+  </Sequence>
+);
+
+/** Ambient bed under the whole reel, faded in/out. */
+export const Bed: React.FC<{ total: number; volume?: number }> = ({ total, volume = 0.12 }) => (
+  <Audio
+    src={staticFile("sfx/pad.wav")}
+    volume={(f) => interpolate(f, [0, 20, total - 40, total], [0, volume, volume, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+  />
+);
+
+/** A scene: Sequence + transition whoosh + its voice line (starts `delay` frames in). */
+export const Scene: React.FC<{ comp: string; line: string; from?: number; dur: number; delay?: number; whoosh?: boolean; children: React.ReactNode }> = ({
+  comp, line, from = 0, dur, delay = 6, whoosh = true, children,
+}) => (
+  <Sequence from={from} durationInFrames={dur}>
+    {whoosh && from > 0 ? <Sfx name="whoosh" /> : null}
+    <Sequence from={delay} layout="none"><Audio src={staticFile(`vo/${comp}/${line}.wav`)} /></Sequence>
+    {children}
+  </Sequence>
 );

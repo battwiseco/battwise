@@ -1,0 +1,6 @@
+{"voice": "af_heart", "speed": 1.1, "lines": {
+ "hook": "It's fine to charge your e-bike in a freezing garage. Right? Myth.",
+ "why": "Below zero Celsius, lithium plates onto the anode as metal. That damage is permanent.",
+ "range": "Charge between zero and forty-five degrees. Ten to thirty is best. Below freezing, don't charge at all.",
+ "do": "Bring the battery inside, let it warm up, then charge.",
+ "outro": "Send this to someone who rides all winter."}}

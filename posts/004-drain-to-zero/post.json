@@ -10,6 +10,6 @@
   "cover": "out/cover.jpg",
   "render": {
     "composition": "004-drain-myth",
-    "cover_frame": 100
+    "cover_frame": 122
   }
 }
