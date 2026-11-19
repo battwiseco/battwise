@@ -18,8 +18,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - name: Install Remotion
-        run: cd reels && npm ci
+      - name: Install ffmpeg + Remotion
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+          cd reels && npm ci
       - name: Test render (no commit)
         if: inputs.test
         run: |
