@@ -21,9 +21,9 @@ Source: Battery University, BU-808.
 
 - Battery University BU-808: https://batteryuniversity.com/article/bu-808-how-to-prolong-lithium-based-batteries ('There is no memory', 'Partial discharge on Li-ion is fine', Table 2 NMC cycles vs DoD)
 
-## Engineer review (open)
+## Engineer review (approved 2026-11-19, weekly batch)
 
-- [ ] Chart shows cycles per DoD (300 / 1,000 / 2,000 / 6,000, NMC). Note: cycles at 10% DoD deliver less energy each, so it's not a total-energy comparison. Framing OK?
+- [x] Chart shows cycles per DoD (300 / 1,000 / 2,000 / 6,000, NMC). Note: cycles at 10% DoD deliver less energy each, so it's not a total-energy comparison. Framing OK?
 
 ## Licenses
 

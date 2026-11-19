@@ -22,10 +22,10 @@ Source: AAA, 2019 (5 EVs, dynamometer, climate-controlled lab).
 - AAA Newsroom, Cold Weather Reduces Electric Vehicle Range (2019): https://newsroom.aaa.com/2019/02/cold-weather-reduces-electric-vehicle-range/ (41% w/ heat, pre-heat while plugged in, garage)
 - AAA study coverage, heater-off figure 12%: https://komonews.com/news/auto-matters/aaa-cold-weather-can-cut-electric-car-range-over-40-percent
 
-## Engineer review (open)
+## Engineer review (approved 2026-11-19, weekly batch)
 
-- [ ] 'Most of the loss is heating, not the battery' — derived from 12% (heater off) vs 41% (heater on). OK?
-- [ ] 'Cold slows the chemistry inside the cells' — simplification OK?
+- [x] 'Most of the loss is heating, not the battery' — derived from 12% (heater off) vs 41% (heater on). OK?
+- [x] 'Cold slows the chemistry inside the cells' — simplification OK?
 
 ## Licenses
 
