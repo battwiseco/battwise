@@ -18,7 +18,7 @@ jobs:
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           MEDIA_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}
-          IG_API: facebook
+          IG_API: instagram
           GRAPH_VERSION: v24.0
           DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
           CHECK_ONLY: ${{ inputs.check_only && '1' || '0' }}

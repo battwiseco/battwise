@@ -1,8 +1,8 @@
 """battwise publisher — official Instagram Graph API, stdlib only.
 
-IG_API=facebook (default): Instagram API with Facebook Login, graph.facebook.com,
+IG_API=facebook: Instagram API with Facebook Login, graph.facebook.com,
   IG_TOKEN = non-expiring Page access token of the Page linked to @battwise.co.
-IG_API=instagram: Instagram API with Instagram Login, graph.instagram.com.
+IG_API=instagram (default): Instagram API with Instagram Login, graph.instagram.com.
 
 Runs in GitHub Actions on a schedule. Publishes every post whose post.json has
 status "approved" and publish_at <= now, then marks it "published".
@@ -23,7 +23,7 @@ BASE = os.environ.get("MEDIA_BASE_URL", "").rstrip("/")
 EXPECT = os.environ.get("IG_EXPECT_USER", "battwise.co")
 VER = os.environ.get("GRAPH_VERSION", "v24.0")
 DRY = os.environ.get("DRY_RUN") == "1"
-MODE = os.environ.get("IG_API", "facebook")
+MODE = os.environ.get("IG_API", "instagram")
 API = f"https://graph.{'facebook' if MODE == 'facebook' else 'instagram'}.com/{VER}"
 
 
