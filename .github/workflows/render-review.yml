@@ -1,0 +1,51 @@
+name: render-review
+# When draft posts are pushed: render images/videos, commit them, open the weekly approval issue.
+on:
+  push:
+    branches: [main]
+    paths: ["posts/**/post.json", "posts/**/slides.html", "reels/src/**"]
+  workflow_dispatch:
+    inputs:
+      test: { description: "Test render 003 + 002 without committing", type: boolean, default: false }
+permissions:
+  contents: write
+  issues: write
+concurrency: { group: render, cancel-in-progress: false }
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Install Remotion
+        run: cd reels && npm ci
+      - name: Test render (no commit)
+        if: inputs.test
+        run: |
+          python3 tools/render_carousel.py posts/003-lfp-vs-nmc
+          bash tools/render_reel.sh 002-ev-cold posts/002-ev-cold-range 80
+          ls -la posts/003-lfp-vs-nmc/out posts/002-ev-cold-range/out
+      - uses: actions/upload-artifact@v4
+        if: inputs.test
+        with: { name: test-render, path: "posts/00[23]-*/out/*" }
+      - name: Render drafts
+        if: ${{ !inputs.test }}
+        id: r
+        run: echo "posts=$(python3 tools/render_pending.py | tail -1)" >> "$GITHUB_OUTPUT"
+      - name: Commit renders
+        if: steps.r.outputs.posts != ''
+        run: |
+          git config user.name "battwise-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -f posts/*/out/*.jpg posts/*/out/*.mp4 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "render: ${{ steps.r.outputs.posts }}" && git push)
+          echo "SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Open approval issue
+        if: steps.r.outputs.posts != ''
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh label create weekly-review --color 1FD6B4 2>/dev/null || true
+          python3 tools/make_issue.py "$SHA" ${{ steps.r.outputs.posts }} > body.md
+          OPEN=$(gh issue list --label weekly-review --state open --json number -q '.[0].number')
+          if [ -n "$OPEN" ]; then gh issue edit "$OPEN" --body-file body.md; else gh issue create --title "Haftalık onay: ${{ steps.r.outputs.posts }}" --label weekly-review --body-file body.md; fi

@@ -1,0 +1,38 @@
+name: approve
+# Repo owner comments "onay" on the open weekly-review issue -> listed drafts become approved.
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  approve:
+    if: >-
+      contains(github.event.issue.labels.*.name, 'weekly-review') &&
+      github.event.comment.user.login == github.repository_owner &&
+      startsWith(github.event.comment.body, 'onay')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Approve listed posts
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, pathlib, re
+          names = re.search(r"<!-- posts: (.*?) -->", os.environ["BODY"]).group(1).split()
+          for n in names:
+              pj = pathlib.Path("posts") / n / "post.json"
+              m = json.loads(pj.read_text())
+              if m.get("status") == "draft":
+                  m["status"] = "approved"
+                  pj.write_text(json.dumps(m, indent=2) + "\n")
+                  print("approved", n)
+          EOF
+          git config user.name "battwise-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add posts && (git diff --cached --quiet || (git commit -m "approve: weekly batch via issue #${{ github.event.issue.number }}" && git push))
+      - name: Close issue
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh issue close ${{ github.event.issue.number }} -R ${{ github.repository }} -c "Onaylandı ✅ Gönderiler kuyrukta."

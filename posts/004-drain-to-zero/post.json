@@ -7,5 +7,9 @@
   "media": [
     "out/reel.mp4"
   ],
-  "cover": "out/cover.jpg"
+  "cover": "out/cover.jpg",
+  "render": {
+    "composition": "004-drain-myth",
+    "cover_frame": 100
+  }
 }
