@@ -1,0 +1,11 @@
+{
+  "id": "002",
+  "type": "reel",
+  "publish_at": "2026-11-24T18:30:00+03:00",
+  "status": "draft",
+  "caption_file": "caption.txt",
+  "media": [
+    "out/reel.mp4"
+  ],
+  "cover": "out/cover.jpg"
+}

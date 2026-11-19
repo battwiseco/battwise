@@ -4,3 +4,6 @@
 # working files
 posts/*/out/*.png
 __pycache__/
+reels/node_modules/
+reels/stills/
+review/

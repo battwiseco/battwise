@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>battwise 003 — LFP vs NMC</title>
+<link rel="stylesheet" href="../../brand/battwise.css">
+<style>
+  .chart text { font-family: "Space Grotesk"; fill: var(--muted); }
+  .chart .lbl { fill: var(--ink); font-weight: 600; }
+  .legend { display: flex; gap: 40px; font-size: 30px; color: var(--muted); }
+  .legend i { display: inline-block; width: 28px; height: 28px; border-radius: 8px; vertical-align: -4px; margin-right: 12px; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .vs .card h3 { font-family: "Space Grotesk"; font-size: 56px; font-weight: 700; letter-spacing: -0.02em; }
+  .vs .card p { font-size: 32px; line-height: 1.35; color: var(--muted); margin-top: 12px; }
+  .lfp { color: #1FD6B4; } .nmc { color: #FFC933; }
+  table.cmp { width: 100%; border-collapse: collapse; font-size: 34px; }
+  table.cmp td { padding: 22px 8px; border-bottom: 2px solid var(--line); vertical-align: top; }
+  table.cmp td:first-child { color: var(--muted); width: 44%; }
+  table.cmp td b { font-family: "Space Grotesk"; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Hook -->
+<section class="slide">
+  <div class="body">
+    <span class="tag">How it works</span>
+    <h1><span class="lfp">LFP</span> vs <span class="nmc">NMC</span> in 7 slides</h1>
+    <p class="lead">The two battery types inside most EVs, power stations and home batteries. Here's how to tell which one you want.</p>
+  </div>
+</section>
+
+<!-- 2 · What they are -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Same family, different recipe</span>
+    <h2>Both are <span class="hl">lithium-ion.</span> The difference is the cathode.</h2>
+    <div class="vs">
+      <div class="card"><h3 class="lfp">LFP</h3><p>Lithium iron phosphate. No nickel, no cobalt.</p></div>
+      <div class="card"><h3 class="nmc">NMC</h3><p>Lithium nickel manganese cobalt oxide.</p></div>
+    </div>
+    <p class="small">The cathode chemistry decides energy, lifespan, safety margin and cost.</p>
+  </div>
+</section>
+
+<!-- 3 · Energy density -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Round 1 · Energy</span>
+    <h2 style="font-size:72px"><span class="nmc">NMC</span> packs more energy per kilogram</h2>
+    <svg class="chart" width="904" height="470" viewBox="0 0 904 470" aria-label="Specific energy: LFP 90 to 120 Wh/kg, NMC 150 to 220 Wh/kg">
+      <!-- scale: 250 Wh/kg = 760px; x0 = 120 -->
+      <text class="lbl" x="0" y="130" font-size="44">LFP</text>
+      <rect x="140" y="80" width="305" height="80" rx="14" fill="rgba(31,214,180,.25)"/>
+      <rect x="140" y="80" width="229" height="80" rx="14" fill="#1FD6B4"/>
+      <text class="lbl" x="465" y="133" font-size="38">90–120</text>
+      <text class="lbl" x="0" y="320" font-size="44">NMC</text>
+      <rect x="140" y="270" width="560" height="80" rx="14" fill="rgba(255,201,51,.25)"/>
+      <rect x="140" y="270" width="382" height="80" rx="14" fill="#FFC933"/>
+      <text class="lbl" x="720" y="323" font-size="38">150–220</text>
+      
+      <text x="140" y="440" font-size="28">Wh/kg at cell level (solid = low end, faded = high end)</text>
+    </svg>
+    <p class="lead">More energy per kg means more range or a lighter device.</p>
+  </div>
+</section>
+
+<!-- 4 · Safety -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Round 2 · Safety margin</span>
+    <h2><span class="lfp">LFP</span> takes more heat before thermal runaway</h2>
+    <p class="small">Temperature at which the cell starts heating itself uncontrollably:</p>
+    <svg class="chart" width="904" height="420" viewBox="0 0 904 420" aria-label="Thermal runaway onset: NMC about 210°C, LFP about 270°C">
+      <line x1="60" y1="300" x2="860" y2="300" stroke="rgba(234,248,243,.25)" stroke-width="3"/>
+      <!-- 0..300°C -> 60..860 -->
+      <circle cx="585" cy="300" r="22" fill="#FFC933"/>
+      <circle cx="735" cy="300" r="22" fill="#1FD6B4"/>
+      <text class="lbl" x="565" y="250" text-anchor="middle" font-size="44">~210°C</text>
+      <text x="585" y="370" text-anchor="middle" font-size="34" fill="#FFC933">NMC</text>
+      <text class="lbl" x="755" y="250" text-anchor="middle" font-size="44">~270°C</text>
+      <text x="735" y="370" text-anchor="middle" font-size="34" fill="#1FD6B4">LFP</text>
+      <text x="60" y="350" font-size="28">0°C</text>
+    </svg>
+    <p class="small">A higher margin, not immunity. Any lithium-ion cell can fail if it's damaged or abused.</p>
+  </div>
+</section>
+
+<!-- 5 · Lifespan -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Round 3 · Lifespan</span>
+    <h2 style="font-size:72px"><span class="lfp">LFP</span> lasts for more cycles</h2>
+    <svg class="chart" width="904" height="500" viewBox="0 0 904 500" aria-label="Cycles until 70% capacity. Full discharges: NMC about 300, LFP about 600. 40% discharges: NMC about 1000, LFP about 3000.">
+      <line x1="40" y1="420" x2="880" y2="420" stroke="rgba(234,248,243,.25)" stroke-width="3"/>
+      <!-- 3000 cycles = 340px -->
+      <rect x="90"  y="386" width="150" height="34"  rx="10" fill="#FFC933"/>
+      <rect x="260" y="352" width="150" height="68"  rx="10" fill="#1FD6B4"/>
+      <rect x="500" y="307" width="150" height="113" rx="10" fill="#FFC933"/>
+      <rect x="670" y="80"  width="150" height="340" rx="10" fill="#1FD6B4"/>
+      <text class="lbl" x="165" y="368" text-anchor="middle" font-size="38">~300</text>
+      <text class="lbl" x="335" y="334" text-anchor="middle" font-size="38">~600</text>
+      <text class="lbl" x="575" y="289" text-anchor="middle" font-size="38">~1,000</text>
+      <text class="lbl" x="745" y="62"  text-anchor="middle" font-size="38">~3,000</text>
+      <text class="lbl" x="250" y="470" text-anchor="middle" font-size="32">100% → 0% each cycle</text>
+      <text class="lbl" x="660" y="470" text-anchor="middle" font-size="32">Using 40% each cycle</text>
+    </svg>
+    <div class="legend"><span><i style="background:#FFC933"></i>NMC</span><span><i style="background:#1FD6B4"></i>LFP</span></div>
+    <p class="small">Cycles until capacity drops to 70%. Estimates from Battery University, BU-808 Table 2.</p>
+  </div>
+</section>
+
+<!-- 6 · Living with it -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Living with it</span>
+    <h2>The trade-offs nobody puts on the box</h2>
+    <table class="cmp">
+      <tr><td>Materials</td><td><b class="lfp">LFP</b> uses no nickel or cobalt, so it's usually cheaper</td></tr>
+      <tr><td>Charging to 100%</td><td><b class="lfp">LFP</b> handles it better. Check your manual; many LFP cars recommend it.</td></tr>
+      <tr><td>Deep cold</td><td><b class="nmc">NMC</b> usually copes better</td></tr>
+      <tr><td>Weight and space</td><td><b class="nmc">NMC</b> wins, so it's used where every kg matters</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 7 · Verdict + sources -->
+<section class="slide">
+  <div class="body" style="gap:34px">
+    <span class="tag">The verdict</span>
+    <h2>Long life and big margins: <span class="lfp">LFP.</span> Max range, light weight: <span class="nmc">NMC.</span></h2>
+    <p class="lead">Save this for the next time you shop for an EV or a power station.</p>
+    <div class="card sources">
+      <b>Sources</b><br>
+      Battery University, BU-216 "Summary Table of Lithium-based Batteries"<br>
+      Battery University, BU-808 "How to Prolong Lithium-based Batteries", Table 2<br>
+      Figures are typical cell-level estimates; real products vary.
+    </div>
+  </div>
+</section>
+
+<script src="../../brand/frame.js"></script>
+</body>
+</html>

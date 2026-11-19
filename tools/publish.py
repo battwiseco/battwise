@@ -57,6 +57,22 @@ def wait_ready(container_id, timeout=600):
     raise RuntimeError(f"container {container_id} not ready after {timeout}s")
 
 
+def upload_video(uri, path):
+    """Resumable upload of a local video file straight to Meta (no public URL needed)."""
+    data = path.read_bytes()
+    req = urllib.request.Request(uri, data=data, method="POST", headers={
+        "Authorization": f"OAuth {TOKEN}", "offset": "0", "file_size": str(len(data)),
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=300) as r:
+            res = json.load(r)
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace").replace(TOKEN, "***")
+        raise RuntimeError(f"video upload -> {e.code}: {body}") from None
+    if not res.get("success", True):
+        raise RuntimeError(f"video upload failed: {res}")
+
+
 def url_for(post_dir, rel):
     return f"{BASE}/posts/{post_dir.name}/{rel}"
 
@@ -74,10 +90,12 @@ def publish(post_dir, meta, uid):
             wait_ready(c)
         parent = call("POST", f"{uid}/media", media_type="CAROUSEL", children=",".join(children), caption=caption)["id"]
     elif kind == "reel":
-        params = dict(media_type="REELS", video_url=url_for(post_dir, media[0]), caption=caption, share_to_feed="true")
+        params = dict(media_type="REELS", upload_type="resumable", caption=caption, share_to_feed="true")
         if meta.get("cover"):
             params["cover_url"] = url_for(post_dir, meta["cover"])
-        parent = call("POST", f"{uid}/media", **params)["id"]
+        c = call("POST", f"{uid}/media", **params)
+        parent = c["id"]
+        upload_video(c.get("uri") or f"https://rupload.facebook.com/ig-api-upload/{VER}/{parent}", post_dir / media[0])
     elif kind == "story":
         rel = media[0]
         key = "video_url" if rel.endswith(".mp4") else "image_url"
