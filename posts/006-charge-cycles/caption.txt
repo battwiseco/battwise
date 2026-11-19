@@ -1,0 +1,16 @@
+How many charges is your battery built for? Apple says 500 to 1,000 full cycles. 🔋
+
+One cycle = using 100% of the battery in total, even across several charges. 60% today + 40% tomorrow = 1 cycle.
+
+Apple's ratings (to 80% capacity, under ideal conditions):
+iPhone 14 and older: 500 cycles
+iPhone 15: 1,000 cycles
+iPad, MacBook, Apple Watch: 1,000 cycles
+
+At one cycle a day, 1,000 cycles is under 3 years. Keep it cool and skip long stays at 100% to get the most out of every one.
+
+Follow for more battery numbers.
+
+Sources: Apple Support "iPhone battery and performance"; Apple "Batteries: Service and Recycling".
+
+#batteryhealth #iphonebattery #chargecycles #applewatch #macbook

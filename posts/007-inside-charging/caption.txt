@@ -1,0 +1,11 @@
+What actually happens inside your battery when you plug it in? 🔌
+
+Charging pushes lithium ions from the cathode (+) to the anode (−), through the electrolyte and a separator thinner than a hair. Using your phone sends them back, and the electrons flowing through your device on the way are the power you use.
+
+Every trip traps a tiny bit of lithium, which is why capacity fades over time. Heat and charging in freezing cold make it worse.
+
+Save this, and follow for how-it-works every Wednesday.
+
+Sources are on the last slide.
+
+#lithiumion #howbatterieswork #batterytech #batteryhealth #sciencexplained

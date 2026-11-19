@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>battwise 007 — What happens inside a battery when you charge it</title>
+<link rel="stylesheet" href="../../brand/battwise.css">
+<style>
+  .cell text { font-family: "Space Grotesk"; fill: var(--muted); }
+  .cell .lbl { fill: var(--ink); font-weight: 600; }
+  .parts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .parts .card h3 { font-family: "Space Grotesk"; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; }
+  .parts .card p { font-size: 30px; line-height: 1.35; color: var(--muted); margin-top: 10px; }
+  .an { color: #1FD6B4; } .ca { color: #FFC933; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Hook -->
+<section class="slide">
+  <div class="body">
+    <span class="tag">How it works</span>
+    <h1>What happens <span class="hl">inside</span> your battery when you plug it in</h1>
+    <p class="lead">Four parts, one tiny traveller, and the reason batteries wear out. Swipe →</p>
+  </div>
+</section>
+
+<!-- 2 · The four parts -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">The four parts</span>
+    <h2>Every lithium-ion cell has the same <span class="hl">four layers</span></h2>
+    <div class="parts">
+      <div class="card"><h3 class="ca">Cathode (+)</h3><p>Metal oxide or phosphate. Holds the lithium when the battery is empty.</p></div>
+      <div class="card"><h3 class="an">Anode (−)</h3><p>Usually graphite. Holds the lithium when the battery is full.</p></div>
+      <div class="card"><h3>Electrolyte</h3><p>A lithium salt in solvent. The road the ions travel on.</p></div>
+      <div class="card"><h3>Separator</h3><p>A porous plastic film that keeps + and − from touching.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Charging -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Plugged in</span>
+    <h2>Charging pushes lithium ions from the <span class="ca">cathode</span> to the <span class="an">anode</span></h2>
+    <svg class="cell" width="904" height="400" viewBox="0 0 904 400" aria-label="Diagram: lithium ions move from cathode on the left through the separator to the anode on the right during charging">
+      <rect x="20" y="40" width="250" height="300" rx="22" fill="rgba(255,201,51,.18)" stroke="#FFC933" stroke-width="4"/>
+      <rect x="634" y="40" width="250" height="300" rx="22" fill="rgba(31,214,180,.18)" stroke="#1FD6B4" stroke-width="4"/>
+      <line x1="452" y1="40" x2="452" y2="340" stroke="rgba(234,248,243,.5)" stroke-width="6" stroke-dasharray="14 12"/>
+      <text class="lbl" x="145" y="385" text-anchor="middle" font-size="32">Cathode +</text>
+      <text class="lbl" x="759" y="385" text-anchor="middle" font-size="32">Anode −</text>
+      <text x="452" y="28" text-anchor="middle" font-size="26">separator</text>
+      <g fill="#B6F55A">
+        <circle cx="320" cy="120" r="18"/><circle cx="400" cy="200" r="18"/><circle cx="510" cy="150" r="18"/><circle cx="580" cy="250" r="18"/>
+      </g>
+      <path d="M300 300 L600 300" stroke="#B6F55A" stroke-width="6" fill="none"/>
+      <polygon points="600,286 628,300 600,314" fill="#B6F55A"/>
+      <text class="lbl" x="365" y="282" text-anchor="middle" font-size="30" style="fill:#B6F55A">Li⁺ ions</text>
+    </svg>
+    <p class="small">Electrons take the outside route, through the charger and wires, to meet them there.</p>
+  </div>
+</section>
+
+<!-- 4 · Discharging -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Using your phone</span>
+    <h2>Unplugged, the ions flow <span class="hl">back to the cathode.</span></h2>
+    <p class="lead">The electrons go back through your device on the way, and that flow is the power you're using.</p>
+    <p class="small">Battery University: "charge reverses the direction and the ions flow from the cathode to the anode."</p>
+  </div>
+</section>
+
+<!-- 5 · The separator -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">The unsung hero</span>
+    <h2>The separator is about <span class="hl">a third of a hair</span> thick</h2>
+    <p class="lead">A common one is about 25 µm thick, and some are now down to 12 µm. Its pores let ions through but block electrons.</p>
+    <p class="small">Many separators have a built-in fuse: if the cell overheats, a polyethylene layer melts at about 130°C (266°F) and closes its pores.</p>
+  </div>
+</section>
+
+<!-- 6 · Why batteries wear -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Why batteries wear out</span>
+    <h2>Every trip costs a <span class="warn">little lithium</span></h2>
+    <p class="lead">Side reactions with heat and high voltage slowly trap lithium so it can't travel any more. Less moving lithium means less capacity.</p>
+    <p class="small">Charging below freezing is worse: lithium can plate onto the anode as metal, which is permanent.</p>
+  </div>
+</section>
+
+<!-- 7 · Recap + sources -->
+<section class="slide">
+  <div class="body" style="gap:34px">
+    <span class="tag">Recap</span>
+    <h2>Charging moves ions <span class="ca">+</span> → <span class="an">−</span>. Using it moves them <span class="an">−</span> → <span class="ca">+</span>. <span class="hl">Heat and cold</span> wear it out.</h2>
+    <p class="lead">Save this, and follow for how-it-works every Wednesday.</p>
+    <div class="card sources">
+      <b>Sources</b><br>
+      Battery University, BU-204 "How do Lithium Batteries Work?"<br>
+      Battery University, BU-306 "What is the Function of the Separator?"<br>
+      Battery University, BU-410 and BU-808
+    </div>
+  </div>
+</section>
+
+<script src="../../brand/frame.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>battwise 005 — Does fast charging ruin your battery?</title>
+<link rel="stylesheet" href="../../brand/battwise.css">
+<style>
+  .chart text { font-family: "Space Grotesk"; fill: var(--muted); }
+  .chart .lbl { fill: var(--ink); font-weight: 600; }
+  .zones { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .zones .card h3 { font-family: "Space Grotesk"; font-size: 52px; font-weight: 700; letter-spacing: -0.02em; }
+  .zones .card p { font-size: 32px; line-height: 1.35; color: var(--muted); margin-top: 12px; }
+  .ok { color: #1FD6B4; } .hot { color: #FF8A6B; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Hook -->
+<section class="slide">
+  <div class="body">
+    <span class="tag">Myth or fact?</span>
+    <h1>Does fast charging <span class="warn">ruin</span> your battery?</h1>
+    <p class="lead">Short answer: mostly myth. The real damage comes from something else. Swipe →</p>
+  </div>
+</section>
+
+<!-- 2 · How a charge fills -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">How a charge fills up</span>
+    <h2>A battery takes charge <span class="hl">fast when it's low,</span> slowly when it's nearly full.</h2>
+    <svg class="chart" width="904" height="420" viewBox="0 0 904 420" aria-label="Charge speed by state of charge: fast from 0 to about 50 to 70 percent, then tapering toward 100 percent">
+      <rect x="40" y="90" width="440" height="200" rx="18" fill="#1FD6B4"/>
+      <rect x="480" y="150" width="180" height="140" rx="0" fill="rgba(31,214,180,.55)"/>
+      <rect x="660" y="220" width="200" height="70" rx="18" fill="rgba(31,214,180,.25)"/>
+      <text class="lbl" x="260" y="200" text-anchor="middle" font-size="40" fill="#07131F" style="fill:#07131F">Fast</text>
+      <text class="lbl" x="860" y="195" text-anchor="end" font-size="34">Slows down</text>
+      <text x="40" y="350" font-size="30">0%</text>
+      <text x="480" y="350" text-anchor="middle" font-size="30">~50–70%</text>
+      <text x="860" y="350" text-anchor="end" font-size="30">100%</text>
+    </svg>
+    <p class="small">Fast chargers push most of their power into the empty half of the battery, then ease off.</p>
+  </div>
+</section>
+
+<!-- 3 · Designed for it -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Why it's mostly fine</span>
+    <h2>Your phone, not the charger, decides <span class="hl">how fast it charges.</span></h2>
+    <p class="lead">A battery built for fast charging accepts it easily up to about half full. After that, the charge current is turned down.</p>
+    <p class="small">Battery University: most chemistries accept a fast charge from empty to about 50% "with little losses."</p>
+  </div>
+</section>
+
+<!-- 4 · The real enemy -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">The real enemy</span>
+    <h2>It's not speed. It's <span class="warn">temperature.</span></h2>
+    <div class="zones">
+      <div class="card"><h3 class="hot">Too hot</h3><p>Heat speeds up permanent capacity loss. Above 30°C (86°F) already counts as "elevated."</p></div>
+      <div class="card"><h3 class="hot">Too cold</h3><p>Fast charging a cold battery can plate lithium metal on the anode.</p></div>
+    </div>
+    <p class="small">Battery University: "Do not apply a fast charge when the battery is cold or hot."</p>
+  </div>
+</section>
+
+<!-- 5 · Where wear does happen -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Where wear does happen</span>
+    <h2>The extra stress is in the <span class="warn">last stretch</span> to 100%.</h2>
+    <p class="lead">The second half of a charge is where acceptance gets "labored," and pushing hard there causes the wear.</p>
+    <p class="small">That's why fast chargers taper near full, and why stopping around 80% is gentler on any battery.</p>
+  </div>
+</section>
+
+<!-- 6 · Do this -->
+<section class="slide">
+  <div class="body">
+    <span class="tag ghost">Do this</span>
+    <h2>Fast charge the <span class="hl">smart way</span></h2>
+    <ul class="list">
+      <li><span class="n">1</span><span>Use the charger your device supports. It controls the speed.</span></li>
+      <li><span class="n">2</span><span>Charge off the pillow, out of the sun, case off if it gets hot.</span></li>
+      <li><span class="n">3</span><span>Freezing cold device? Let it warm to room temperature first.</span></li>
+      <li><span class="n">4</span><span>No rush? Slow charging overnight is gentler still.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7 · Verdict + sources -->
+<section class="slide">
+  <div class="body" style="gap:34px">
+    <span class="tag">The verdict</span>
+    <h2>Mostly <span class="hl">myth.</span> Fast charging is fine. <span class="warn">Heat and cold</span> are what age it.</h2>
+    <p class="lead">Send this to the friend who still refuses to use their fast charger.</p>
+    <div class="card sources">
+      <b>Sources</b><br>
+      Battery University, BU-401a "Fast and Ultra-fast Chargers"<br>
+      Battery University, BU-808 "How to Prolong Lithium-based Batteries"<br>
+      Battery University, BU-410 "Charging at High and Low Temperatures"
+    </div>
+  </div>
+</section>
+
+<script src="../../brand/frame.js"></script>
+</body>
+</html>
