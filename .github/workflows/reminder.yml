@@ -1,0 +1,29 @@
+name: reminder
+# One-off reminder: opens an issue (GitHub emails the owner). Delete this file after it fires.
+on:
+  schedule:
+    - cron: "0 8 25 11 *"   # 25 Nov 08:00 UTC = 11:00 TR
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open reminder issue (2026 only)
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          [ "$(date -u +%Y)" = "2026" ] || { echo "not 2026, skipping"; exit 0; }
+          gh issue create -R "${{ github.repository }}" \
+            --title "Hatırlatma: Meta portföy birleştirme + profil adları" \
+            --body "Claude Code'u battwise.co klasöründe aç ve **portföy birleştirmeye devam** yaz.
+
+          Plan (Claude'un hafızasında kayıtlı):
+          1. Token'ın hangi sistem kullanıcısına ait olduğunu doğrula
+          2. Instagram hesabını uygulamanın olduğu portföye (1134269789350517) taşı
+          3. Boş portföyü (1120036000893676) sil, silmeden önce onay alınacak
+          4. Profil adlarını battwise.co yap
+
+          Chrome'da facebook.com'a battwise hesabıyla giriş yapılmış olsun."
