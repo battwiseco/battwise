@@ -2,7 +2,7 @@
   "id": "002",
   "type": "reel",
   "publish_at": "2026-11-24T18:30:00+03:00",
-  "status": "approved",
+  "status": "published",
   "caption_file": "caption.txt",
   "media": [
     "out/reel.mp4"
@@ -11,5 +11,8 @@
   "render": {
     "composition": "002-ev-cold",
     "cover_frame": 80
-  }
+  },
+  "media_id": "18135930118683359",
+  "permalink": "https://www.instagram.com/reel/DgITFSgjNAh/",
+  "published_at": "2026-11-24T15:39:53+00:00"
 }
