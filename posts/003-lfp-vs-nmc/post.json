@@ -2,7 +2,7 @@
   "id": "003",
   "type": "carousel",
   "publish_at": "2026-11-25T18:30:00+03:00",
-  "status": "approved",
+  "status": "published",
   "caption_file": "caption.txt",
   "media": [
     "out/01.jpg",
@@ -12,5 +12,8 @@
     "out/05.jpg",
     "out/06.jpg",
     "out/07.jpg"
-  ]
+  ],
+  "media_id": "18119719319031264",
+  "permalink": "https://www.instagram.com/p/DgLAMESjwZX/",
+  "published_at": "2026-11-25T16:52:02+00:00"
 }
