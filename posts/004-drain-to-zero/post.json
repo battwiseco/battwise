@@ -2,7 +2,7 @@
   "id": "004",
   "type": "reel",
   "publish_at": "2026-11-26T18:30:00+03:00",
-  "status": "approved",
+  "status": "published",
   "caption_file": "caption.txt",
   "media": [
     "out/reel.mp4"
@@ -11,5 +11,8 @@
   "render": {
     "composition": "004-drain-myth",
     "cover_frame": 122
-  }
+  },
+  "media_id": "18420860386083432",
+  "permalink": "https://www.instagram.com/reel/DgNdX82iqjL/",
+  "published_at": "2026-11-26T15:46:00+00:00"
 }
